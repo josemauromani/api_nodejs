@@ -1,13 +1,11 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-    return res.send({ message: 'tudo ok com o get' });
-})
+const indexRoutes = require('./routes/index');
+const usersRoutes = require('./routes/users');
 
-app.post('/', (req, res) => {
-    return res.send({ message: 'tudo ok post' });
-});
+app.use('/', indexRoutes);
+app.use('/users', usersRoutes);
 
 app.listen(3000);
 module.exports = app;
