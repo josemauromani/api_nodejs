@@ -11,3 +11,10 @@ Abordando os seguintes tópicos:
 - Async e Await
 - Autenticação com JWT (JSON Web Token)
 - Retornando Status Codes corretamente
+
+Bibliotecas utilizadas no projeto
+
+- Express - https://www.npmjs.com/package/express
+- Mongoose - https://www.npmjs.com/package/mongoose
+- Body-Parser - https://www.npmjs.com/package/body-parser
+- Bcrypt - https://www.npmjs.com/package/bcrypt
