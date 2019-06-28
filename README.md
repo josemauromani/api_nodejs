@@ -12,9 +12,10 @@ Abordando os seguintes tópicos:
 - Autenticação com JWT (JSON Web Token)
 - Retornando Status Codes corretamente
 
-Bibliotecas utilizadas no projeto
+<h3>Bibliotecas utilizadas no projeto</h3>
 
-- Express - https://www.npmjs.com/package/express
-- Mongoose - https://www.npmjs.com/package/mongoose
-- Body-Parser - https://www.npmjs.com/package/body-parser
-- Bcrypt - https://www.npmjs.com/package/bcrypt
+- express - https://www.npmjs.com/package/express
+- mongoose - https://www.npmjs.com/package/mongoose
+- body-parser - https://www.npmjs.com/package/body-parser
+- bcrypt - https://www.npmjs.com/package/bcrypt
+- jsonwebtoken - https://www.npmjs.com/package/jsonwebtoken
