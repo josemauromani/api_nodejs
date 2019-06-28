@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
-router.get('/', (req, res) => {
-    return res.send({ message: 'ok get raiz' });
-});
-
-router.post('/', (req, res) => {
-    return res.send({ message: 'ok post raiz' });
+router.get('/', auth, (req, res) => {
+    console.log(res.locals.auth_data);
+    return res.status(200).send({ message: 'Essa informação é restrita' });
 });
 
 module.exports = router;
