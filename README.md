@@ -1,4 +1,4 @@
-Curso Básico de APIs com NodeJS + Express + MongoDB
+Udemy - Curso Básico de APIs com NodeJS + Express + MongoDB
 
 Este repositório contém os arquivos desenvolvidos durante o curso.
 Abordando os seguintes tópicos:
