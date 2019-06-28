@@ -10,38 +10,44 @@ router.get('/', (req, res) => {
     })
 });
 
-router.post('/create', (req, res) => {
+router.post('/create', async (req, res) => {
+
     const { email, password } = req.body;
     if (!email || !password) return res.send({ error: 'Dados insuficientes' });
 
-    User.findOne({ email: email }, (err, data) => {
-        if (err) return res.send({ error: 'Erro ao buscar usuario' });
-        if (data) return res.send({ error: 'Usuário já existe' });
+    try {
+        if (await User.findOne({ email })) return res.send({ error: 'Usuário já registrado' });
 
-        User.create(req.body, (err, data) => {
-            if (err) return res.send({ error: 'Erro ao criar usuário' });
-            data.password = undefined;
-            return res.send(data);
-        });
-    });
+        const usuario = await User.create(req.body);
+        usuario.password = undefined;
+        return res.send(usuario);
+
+    } catch (err) {
+        return res.send({ error: 'Erro ao buscar usuario' });
+    }
+
 });
 
-router.post('/auth', (req, res) => {
-    const { email, password } = req.body;
+router.post('/auth', async (req, res) => {
 
+    const { email, password } = req.body;
     if (!email || !password) return res.send({ error: 'Dados insuficientes!:-(' });
 
-    User.findOne({ email }, (err, data) => {
+    try {
 
-        if (err) return res.send({ error: 'Erro ao busca usuário' });
-        if (!data) return res.send({ error: 'Usuário não registrado' });
+        const usuario = await User.findOne({ email }).select('+password');
 
-        bcrypt.compare(password, data.password, (err, same) => {
-            if (!same) return res.send({ error: 'Erro ao autenticar usuário' });
-            data.password = undefined;
-            return res.send(data);
-        })
-    }).select('+password');
+        if (!usuario) return res.send({ error: 'Usuário não registrado' });
+
+        const passok = await bcrypt.compare(password, usuario.password);
+        if (!passok) return res.send({ error: 'Senhas não conferem' });
+
+        usuario.password = undefined;
+        return res.send(usuario);
+
+    } catch (err) {
+        return res.send({ error: 'Erro ao buscar usuário' });
+    }
 
 });
 
