@@ -1,9 +1,10 @@
+const config = require('./config/env');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const urlDb = 'mongodb+srv://root:Ebenezer123@clusterapi-gseal.mongodb.net/test?retryWrites=true&w=majority';
+const urlDb = config.bd_string;
 const optionsDb = { reconnectTries: Number.MAX_VALUE, reconnectInterval: 500, poolSize: 5, useNewUrlParser: true };
 
 mongoose.connect(urlDb, optionsDb);

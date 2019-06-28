@@ -1,3 +1,4 @@
+const config = require('../config/env');
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
@@ -5,7 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const createUserToken = (userId) => {
-    return jwt.sign({ id: userId }, 'dermo2019', { expiresIn: '7d' });
+    return jwt.sign({ id: userId }, config.jwt_password , { expiresIn: config.jwt_expires });
 }
 
 router.get('/', (req, res) => {
